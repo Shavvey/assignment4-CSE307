@@ -1,4 +1,5 @@
 import numpy as np
+from scipy import signal
 
 RED_ANSI = "\033[31m"
 RESET_ANSI = "\033[0m"
@@ -54,7 +55,8 @@ def convolve(mask: np.ndarray, image: np.ndarray) -> np.ndarray:
                 # end iteration if (i,j) convolve is not possible (NOTE: we could also prob use padding instead?)
                 break
             slice = image[row_idx : row_idx + width, col_idx : col_idx + width]
-            conv_out[row_idx, col_idx] = np.sum(slice.dot(mask))
+            # compute element wise multiplication, then sum along axis=0
+            conv_out[row_idx, col_idx] = np.sum(slice * mask)
     return conv_out
 
 
