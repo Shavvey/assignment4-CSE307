@@ -1,5 +1,4 @@
 import numpy as np
-from scipy import signal
 
 RED_ANSI = "\033[31m"
 RESET_ANSI = "\033[0m"
@@ -68,13 +67,13 @@ def find_max_idx(input: np.ndarray) -> tuple[int, int]:
             if elem > max:
                 max = elem
                 indices = (row_idx, col_idx)
-    print(max)
     return indices
 
 
 def matrix_ones_to_zeros(input: np.ndarray) -> np.ndarray:
     """Replace 0's inside a 2D array with 1s"""
     assert len(input.shape) == 2, f"Expecting a 2D array, was given {len(input.shape)}D"
+    # this is so annoying, you could just use input[input == 0] = -1 if you wanted to use fancy indexing!
     # create array to store indices
     row_indices = np.array([], dtype=int)
     col_indices = np.array([], dtype=int)
@@ -94,12 +93,12 @@ def main():
     print_circle(mask)
     conv_out_zeroes = convolve(mask, image)
     print(conv_out_zeroes)
-    print(find_max_idx(conv_out_zeroes))
+    print(f"Max idx of zero mask convolution: {find_max_idx(conv_out_zeroes)}")
     mask = matrix_ones_to_zeros(mask)
     print_circle(mask)
-    conv_out_neg_ones = convolve(mask,image) 
+    conv_out_neg_ones = convolve(mask, image)
     print(conv_out_neg_ones)
-    print(find_max_idx(conv_out_neg_ones))
+    print(f"Max idx of negative ones mask convolution: {find_max_idx(conv_out_neg_ones)}")
 
 
 if __name__ == "__main__":
