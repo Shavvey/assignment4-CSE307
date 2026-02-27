@@ -98,7 +98,9 @@ def main():
     print_circle(mask)
     conv_out_neg_ones = convolve(mask, image)
     print(conv_out_neg_ones)
-    print(f"Max idx of negative ones mask convolution: {find_max_idx(conv_out_neg_ones)}")
+    print(
+        f"Max idx of negative ones mask convolution: {find_max_idx(conv_out_neg_ones)}"
+    )
 
 
 if __name__ == "__main__":
