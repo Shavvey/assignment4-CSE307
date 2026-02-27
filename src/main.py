@@ -73,13 +73,13 @@ def find_max_idx(input: np.ndarray) -> tuple[int, int]:
 def matrix_ones_to_zeros(input: np.ndarray) -> np.ndarray:
     """Replace 0's inside a 2D array with 1s"""
     assert len(input.shape) == 2, f"Expecting a 2D array, was given {len(input.shape)}D"
-    # create separate arrays for the storing of the indices
+    # this is so annoying, you could just use input[input == 0] = -1 if you wanted to use fancy indexing!
+    # create array to store indices
     row_indices = np.array([], dtype=int)
     col_indices = np.array([], dtype=int)
     for row_idx, row in enumerate(input):
         for col_idx, elem in enumerate(row):
             if elem == 0:
-                # if we discover an zero element in matrix, record the indices
                 row_indices = np.append(row_indices, row_idx)
                 col_indices = np.append(col_indices, col_idx)
     input[row_indices, col_indices] = -1
