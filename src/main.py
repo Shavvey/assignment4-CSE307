@@ -26,13 +26,13 @@ def print_circle(arr: np.ndarray):
         sb += "["
         for elem in row[:-1]:
             if elem == 1:
-                sb += f"{RED_ANSI}{elem: <4.1f}{RESET_ANSI}, "
+                sb += f"{RED_ANSI}{elem: <3.1f}{RESET_ANSI}, "
             else:
-                sb += f"{elem}, "
+                sb += f"{elem: <3.1f}, "
         if row[-1] == 1:
-            sb += f"{RED_ANSI}{row[-1]: <4.1f}{RESET_ANSI}]\n"
+            sb += f"{RED_ANSI}{row[-1]: <3.1f}{RESET_ANSI}]\n"
         else:
-            sb += f"{row[-1]}]\n"
+            sb += f"{row[-1]: <3.1f}]\n"
     print(sb)
 
 
